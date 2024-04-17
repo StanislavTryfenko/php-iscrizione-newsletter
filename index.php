@@ -2,13 +2,7 @@
 $email = $_GET['email'];
 var_dump($email);
 
-if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-    $email_check = true;
-} elseif (strlen($email) == 0) {
-    $email_check = 0;
-} else {
-    $email = false;
-}
+include_once('email_check.php');
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +26,7 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             <div class="mb-3">
                 <form action="" method="get">
                     <label for="" class="form-label">Email:</label>
-                    <input type="text" class="form-control" name="email" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com" />
+                    <input type="email" class="form-control" name="email" id="" aria-describedby="emailHelpId" placeholder="abc@mail.com" />
                     <small id="emailHelpId" class="form-text text-muted">Ci vuole poco, basta essere un utente mediamente sveglio</small>
                     <br>
                     <button type="submit">Invia</button>
@@ -40,14 +34,14 @@ if(filter_var($email, FILTER_VALIDATE_EMAIL)){
             </div>
             <h4>
                 <?php
-                if ($email_check == 0) {
-                    echo '';
+                if (is_null($email)) {
+                    echo 'inserisci una mail';
                 }
                 if ($email_check == true) {
                     echo 'Bravo, sei stato in grado di inserire una mail';
                 }
-                if ($email_check == false) {
-                    echo 'Bel tentativo';
+                if ($email_check == false && isset($email)) {
+                    echo 'Bel tentativo, riprova';
                 }
                 ?>
             </h4>

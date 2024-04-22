@@ -37,13 +37,14 @@ include_once('email_check.php');
                 if (is_null($email)) {
                     echo 'inserisci una mail';
                 }
-                if ($email_check == true) {
+                if ($email_check = true) {
                     echo 'Bravo, sei stato in grado di inserire una mail';
                 }
                 if ($email_check == false && isset($email)) {
                     echo 'Bel tentativo, riprova';
                 }
                 ?>
+                
             </h4>
         </div>
     </main>

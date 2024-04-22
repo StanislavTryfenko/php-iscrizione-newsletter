@@ -1,8 +1,7 @@
 <?php
 $email = $_GET['email'];
 var_dump($email);
-
-include_once('email_check.php');
+include_once __DIR__ . '/functions/email_check.php';
 ?>
 
 <!DOCTYPE html>
@@ -34,17 +33,14 @@ include_once('email_check.php');
             </div>
             <h4>
                 <?php
-                if (is_null($email)) {
-                    echo 'inserisci una mail';
-                }
-                if ($email_check = true) {
+                if ($email_check){
                     echo 'Bravo, sei stato in grado di inserire una mail';
-                }
-                if ($email_check == false && isset($email)) {
+                }  elseif (empty($email)) {
+                    echo 'inserisci una mail';
+                } else {
                     echo 'Bel tentativo, riprova';
-                }
+                } 
                 ?>
-                
             </h4>
         </div>
     </main>
